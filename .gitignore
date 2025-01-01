@@ -1,0 +1,22 @@
+# Go binary
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go build
+/bin/
+/pkg/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Debug files
+*.test
+*.prof
+
+# OS
+.DS_Store
