@@ -1,0 +1,16 @@
+[menu]
+[[menu.items]]
+label = "文件"
+submenu = [
+    {label = "导入数据", shortcut = "Ctrl+I"},
+    {label = "导出数据", shortcut = "Ctrl+E"},
+    {type = "separator"},
+    {label = "退出", shortcut = "Ctrl+Q"}
+]
+
+[[menu.items]]
+label = "帮助"
+submenu = [
+    {label = "使用说明"},
+    {label = "关于"}
+]
