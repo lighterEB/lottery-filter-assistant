@@ -8,14 +8,13 @@ import (
 
 // 定义默认值
 var (
-	defaultAppId     string  = "com.lightereb.lotteryfilterassisant"
 	defaultWidth     float32 = 1024
 	defaultHeight    float32 = 800
 	defaultMinWidth  float32 = 800
 	defaultMinHeight float32 = 640
 	defaultTitle     string  = "彩票过滤助手"
 	// 配置文件默认路径
-	configPath string = "config/window.toml"
+	windowConfigPath string = "config/window.toml"
 )
 
 // 窗口配置结构
@@ -31,7 +30,7 @@ type WindowConfig struct {
 // 加载窗口配置
 func LoadWindowConfig() WindowConfig {
 	var wincfg WindowConfig
-	if _, err := toml.DecodeFile(configPath, &wincfg); err != nil {
+	if _, err := toml.DecodeFile(windowConfigPath, &wincfg); err != nil {
 		log.Printf("加载配置出错：%v, 使用默认配置", err)
 		return getDefaultConfig()
 	}
@@ -41,7 +40,6 @@ func LoadWindowConfig() WindowConfig {
 // 获取默认配置
 func getDefaultConfig() WindowConfig {
 	return WindowConfig{
-		AppId:     defaultAppId,
 		Width:     defaultWidth,
 		Height:    defaultHeight,
 		MinWidth:  defaultMinWidth,

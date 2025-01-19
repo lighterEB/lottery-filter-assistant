@@ -1,7 +1,6 @@
 [window]
-app_id = "com.lightereb.lotteryfilterassistant"
 title = "彩票过滤助手"
-width = 800
-height = 600
-min_width = 640
-min_height = 480
+width = 1024
+height = 800
+min_width = 800
+min_height = 640

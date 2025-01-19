@@ -1,31 +1,19 @@
 package initialize
 
 import (
-	"LotteryFilterAssistant/internal/config"
-	"log"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"github.com/BurntSushi/toml"
 )
 
 // 初始化应用
-func InitApp() (fyne.App, fyne.Window) {
-	// 读取窗口配置
-	var config config.WindowConfig
-	if _, err := toml.DecodeFile("config/window.toml", &config); err != nil {
-		log.Fatal(err)
-	}
-
+func InitApp() {
 	app := app.New()
-	w := app.NewWindow(config.Title)
-
-	// 设置窗口大小
-	w.SetFixedSize(false)
-	w.Resize(fyne.NewSize(config.Width, config.Height))
-
-	return app, w
+	w := app.NewWindow("")
+	InitLayout(w)
+	InitWindow(w)
+	InitMainMenu(w)
+	w.ShowAndRun()
 }
 
 // 创建一个保持纵横比的容器
