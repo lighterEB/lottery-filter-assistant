@@ -1,8 +1,6 @@
 package api
 
-import (
-	"LotteryFilterAssistant/internal/entity"
-)
+import "LotteryFilterAssistant/internal/domain/entity"
 
 // 参数结构体
 type QueryOptions struct {
