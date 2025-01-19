@@ -1,6 +1,7 @@
 package initialize
 
 import (
+	"LotteryFilterAssistant/internal/config"
 	"log"
 
 	"fyne.io/fyne/v2"
@@ -9,31 +10,20 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
-// 窗口配置结构
-type WindowConfig struct {
-	Window struct {
-		Title     string  `toml:"title"`
-		Width     float32 `toml: width`
-		Height    float32 `toml: height`
-		MinWidth  float32 `toml: min_width`
-		MinHeight float32 `toml: min_height`
-	} `toml:"window"`
-}
-
 // 初始化应用
 func InitApp() (fyne.App, fyne.Window) {
 	// 读取窗口配置
-	var config WindowConfig
+	var config config.WindowConfig
 	if _, err := toml.DecodeFile("config/window.toml", &config); err != nil {
 		log.Fatal(err)
 	}
 
 	app := app.New()
-	w := app.NewWindow(config.Window.Title)
+	w := app.NewWindow(config.Title)
 
 	// 设置窗口大小
 	w.SetFixedSize(false)
-	w.Resize(fyne.NewSize(config.Window.Width, config.Window.Height))
+	w.Resize(fyne.NewSize(config.Width, config.Height))
 
 	return app, w
 }

@@ -1,4 +1,5 @@
 [window]
+app_id = "com.lightereb.lotteryfilterassistant"
 title = "彩票过滤助手"
 width = 800
 height = 600
