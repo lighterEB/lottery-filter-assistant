@@ -7,7 +7,6 @@
 
 # Go build
 /bin/
-/pkg/
 
 # IDE
 .idea/
