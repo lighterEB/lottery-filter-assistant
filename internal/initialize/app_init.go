@@ -1,6 +1,8 @@
 package initialize
 
 import (
+	"LotteryFilterAssistant/internal/config"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
@@ -9,11 +11,10 @@ import (
 // 初始化应用
 func InitApp() {
 	app := app.New()
-	w := app.NewWindow("")
-	InitLayout(w)
-	InitWindow(w)
-	InitMainMenu(w)
-	w.ShowAndRun()
+	wCfg := config.LoadWindowConfig()
+	window := InitWindow(app, wCfg)
+	InitMainMenu(window)
+	window.ShowAndRun()
 }
 
 // 创建一个保持纵横比的容器

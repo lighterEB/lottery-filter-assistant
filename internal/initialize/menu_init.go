@@ -10,7 +10,7 @@ import (
 func InitMainMenu(window fyne.Window) {
 	menuConfig := config.LoadMenuConfig()
 	handler := menu.NewMenuHandler(window)
-	mainMenu := createMainMenu(menuConfig.Items, handler)
+	mainMenu := createMainMenu(menuConfig.Menu.Items, handler)
 	window.SetMainMenu(mainMenu)
 }
 

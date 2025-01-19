@@ -1,6 +1,7 @@
 package config
 
 import (
+	"LotteryFilterAssistant/internal/constants"
 	"log"
 
 	"github.com/BurntSushi/toml"
@@ -13,37 +14,44 @@ var (
 	defaultMinWidth  float32 = 800
 	defaultMinHeight float32 = 640
 	defaultTitle     string  = "彩票过滤助手"
-	// 配置文件默认路径
-	windowConfigPath string = "config/window.toml"
 )
 
 // 窗口配置结构
 type WindowConfig struct {
-	AppId     string  `toml:"app_id"`
-	Title     string  `toml:"title"`
-	Width     float32 `toml:"width"`
-	Height    float32 `toml:"height"`
-	MinWidth  float32 `toml:"min_width"`
-	MinHeight float32 `toml:"min_height"`
+	Window struct {
+		Title     string  `toml:"title"`
+		Width     float32 `toml:"width"`
+		Height    float32 `toml:"height"`
+		MinWidth  float32 `toml:"min_width"`
+		MinHeight float32 `toml:"min_height"`
+	} `toml:"window"`
 }
 
 // 加载窗口配置
-func LoadWindowConfig() WindowConfig {
+func LoadWindowConfig() *WindowConfig {
 	var wincfg WindowConfig
-	if _, err := toml.DecodeFile(windowConfigPath, &wincfg); err != nil {
+	if _, err := toml.DecodeFile(constants.CONFIG_PATH, &wincfg); err != nil {
 		log.Printf("加载配置出错：%v, 使用默认配置", err)
 		return getDefaultConfig()
 	}
-	return wincfg
+	return &wincfg
 }
 
 // 获取默认配置
-func getDefaultConfig() WindowConfig {
-	return WindowConfig{
-		Width:     defaultWidth,
-		Height:    defaultHeight,
-		MinWidth:  defaultMinWidth,
-		MinHeight: defaultMinHeight,
-		Title:     defaultTitle,
+func getDefaultConfig() *WindowConfig {
+	return &WindowConfig{
+		Window: struct {
+			Title     string  `toml:"title"`
+			Width     float32 `toml:"width"`
+			Height    float32 `toml:"height"`
+			MinWidth  float32 `toml:"min_width"`
+			MinHeight float32 `toml:"min_height"`
+		}{
+			Width:     defaultWidth,
+			Height:    defaultHeight,
+			MinWidth:  defaultMinWidth,
+			MinHeight: defaultMinHeight,
+			Title:     defaultTitle,
+		},
 	}
 }
